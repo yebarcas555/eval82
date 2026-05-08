@@ -237,7 +237,7 @@ function finishQuiz(){
   const total=questions.length;
 
   // Escala: mínimo 20, máximo 100
-  const nota=(20+(score/total)*80).toFixed(2);
+  const nota=Math.round(20+(score/total)*80);
 
   // Aprobado desde 60
   const estado=Number(nota)>=60 ? "APROBADO" : "NO APROBADO";
