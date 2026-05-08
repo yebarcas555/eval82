@@ -1,142 +1,85 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Evaluación Operadores Mecánicos - Grado 8-2</title>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Evaluación Operadores Mecánicos - Grado 8-2</title>
 <style>
-:root{--azul:#0b3766;--verde:#0f7b54;--texto:#111827}
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#edf7ff,#f2fff8);color:var(--texto);user-select:none}
-header{background:linear-gradient(90deg,var(--azul),var(--verde));color:white;text-align:center;padding:26px 14px}
-header h1{margin:0;font-size:32px} header p{margin:8px 0 0}
-.container{max-width:1000px;margin:auto;padding:22px}
-.card{background:white;border-radius:18px;padding:24px;margin-bottom:20px;box-shadow:0 6px 20px rgba(0,0,0,.12)}
-input[type=text]{width:100%;padding:14px;margin:8px 0 14px;border:1px solid #c8d0dc;border-radius:12px;font-size:16px;user-select:text}
-button{background:var(--azul);color:white;border:0;border-radius:12px;padding:14px 24px;font-size:16px;font-weight:bold;cursor:pointer}
-button:hover{background:#072548}
-.grado-fijo{background:#eefaf2;border:1px solid #bde6cc;color:#11683b;padding:13px;border-radius:12px;font-size:17px;font-weight:bold;margin:8px 0 16px}
-.intro{border-left:6px solid var(--verde);background:#f7fff9}
-.option{display:block;padding:15px;margin:10px 0;border:1px solid #d3dbea;border-radius:14px;background:#f8fbff;cursor:pointer}
-.option:hover{background:#eaf2ff}
-.hidden{display:none}
-.progress{font-weight:bold;color:var(--verde);margin-bottom:10px}
-.result{font-size:26px;font-weight:bold;color:var(--azul);text-align:center}
-.small{color:#4b5563;font-size:14px}
-.badge{display:inline-block;background:#fff7d6;color:#8a5a00;border:1px solid #f2d36b;padding:6px 10px;border-radius:999px;font-weight:bold;margin-top:8px}
-</style>
-</head>
+:root{--azul:#0b3766;--verde:#0f7b54;--texto:#111827}*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#edf7ff,#f2fff8);color:var(--texto);user-select:none}header{background:linear-gradient(90deg,var(--azul),var(--verde));color:white;text-align:center;padding:26px 14px}header h1{margin:0;font-size:32px}header p{margin:8px 0 0}.container{max-width:1000px;margin:auto;padding:22px}.card{background:white;border-radius:18px;padding:24px;margin-bottom:20px;box-shadow:0 6px 20px rgba(0,0,0,.12)}input[type=text]{width:100%;padding:14px;margin:8px 0 14px;border:1px solid #c8d0dc;border-radius:12px;font-size:16px;user-select:text}button{background:var(--azul);color:white;border:0;border-radius:12px;padding:14px 24px;font-size:16px;font-weight:bold;cursor:pointer}button:hover{background:#072548}.grado-fijo{background:#eefaf2;border:1px solid #bde6cc;color:#11683b;padding:13px;border-radius:12px;font-size:17px;font-weight:bold;margin:8px 0 16px}.intro{border-left:6px solid var(--verde);background:#f7fff9}.option{display:block;padding:15px;margin:10px 0;border:1px solid #d3dbea;border-radius:14px;background:#f8fbff;cursor:pointer}.option:hover{background:#eaf2ff}.option input{margin-right:8px;transform:scale(1.2)}.hidden{display:none}.progress{font-weight:bold;color:var(--verde);margin-bottom:10px}.result{font-size:26px;font-weight:bold;color:var(--azul);text-align:center}.small{color:#4b5563;font-size:14px}.warning{color:#9a3412;font-weight:bold}.badge{display:inline-block;background:#fff7d6;color:#8a5a00;border:1px solid #f2d36b;padding:6px 10px;border-radius:999px;font-weight:bold;margin-top:8px}
+</style></head>
 <body oncopy="return false" onpaste="return false" oncut="return false">
-<header>
-  <h1>Evaluación en línea</h1>
-  <p>Operador mecánico y efectos encadenados — Grado 8-2 | Tecnología e Informática | IE San Miguel</p>
-  <span class="badge">50 preguntas corregidas · nota de 20 a 100 · resultado visible sin nota</span>
-</header>
+<header><h1>Evaluación en línea</h1><p>Operador mecánico y efectos encadenados — Grado 8-2 | Tecnología e Informática | IE San Miguel</p><span class="badge">50 preguntas · selecciona dos respuestas · nota de 20 a 100</span></header>
 <div class="container">
-<section class="card" id="datosCard">
-  <h2>Datos del estudiante</h2>
-  <label><strong>Nombre completo:</strong></label>
-  <input type="text" id="nombre" placeholder="Nombre completo">
-  <label><strong>Grado:</strong></label>
-  <div class="grado-fijo">8-2</div>
-  <input type="hidden" id="curso" value="8-2">
-  <button onclick="startQuiz()">Iniciar evaluación</button>
-</section>
-<section class="card intro">
-  <h2>Instrucciones</h2>
-  <p>Lee cada pregunta y selecciona la opción correcta. Al seleccionar una respuesta, el sistema avanzará automáticamente a la siguiente pregunta.</p>
-  <p class="small">Las preguntas y las opciones se mezclan automáticamente para cada estudiante. Al finalizar, solo verás APROBADO o NO APROBADO. La nota se enviará al docente.</p>
-</section>
+<section class="card" id="datosCard"><h2>Datos del estudiante</h2><label><strong>Nombre completo:</strong></label><input type="text" id="nombre" placeholder="Nombre completo"><label><strong>Grado:</strong></label><div class="grado-fijo">8-2</div><input type="hidden" id="curso" value="8-2"><button onclick="startQuiz()">Iniciar evaluación</button></section>
+<section class="card intro"><h2>Instrucciones</h2><p>Lee cada pregunta y selecciona <strong>exactamente dos respuestas correctas</strong>. Al marcar la segunda opción, el sistema avanzará automáticamente.</p><p class="small">Las preguntas y las opciones se mezclan automáticamente. Al finalizar, solo verás APROBADO o NO APROBADO. La nota se enviará al docente.</p></section>
 <section class="card hidden" id="quizCard"><div id="questionContainer"></div></section>
-<section class="card hidden" id="resultCard">
-  <div class="result" id="resultText"></div>
-  <p id="studentText"></p>
-  <p id="avisoEnvio" class="small">Enviando resultado a Google Sheets...</p>
-</section>
+<section class="card hidden" id="resultCard"><div class="result" id="resultText"></div><p id="studentText"></p><p id="avisoEnvio" class="small">Enviando resultado a Google Sheets...</p></section>
 </div>
 <script>
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwIuwpfKykrKwIPSdduhIdrg8kjVHz6ueXX4dyw5TEzgTBDn8oBbdiZAx4R34-ZtBr6/exec";
-const questions = [{"question": "Un estudiante observa una polea que permite levantar una carga al jalar una cuerda. ¿Qué representa la polea dentro del sistema?", "options": ["Una evidencia de aprendizaje", "Un operador mecánico", "Una conclusión", "Una línea del tiempo", "Un recurso didáctico"], "answer": 1}, {"question": "En una bicicleta, al mover los pedales se mueve la cadena y luego gira la rueda. Este caso representa principalmente:", "options": ["Un efecto encadenado", "Una actividad de cierre", "Un recurso de clase", "Una imagen impresa", "Una definición escrita"], "answer": 0}, {"question": "La entrada en un mecanismo corresponde a:", "options": ["El resultado final del sistema", "La fuerza o acción inicial", "El dibujo del mecanismo", "La explicación oral", "La carga que se levanta"], "answer": 1}, {"question": "La salida de un mecanismo es:", "options": ["La fuerza que inicia el movimiento", "La pieza que no se mueve", "El resultado final producido", "El cuaderno usado en clase", "El marcador de la cartulina"], "answer": 2}, {"question": "¿Cuál opción describe mejor un mecanismo?", "options": ["Una sola pieza sin movimiento", "Un conjunto de piezas coordinadas para producir movimiento útil", "Una explicación escrita sin ejemplo", "Una conclusión sobre tecnología", "Una imagen decorativa"], "answer": 1}, {"question": "Si una acción provoca otra dentro de un sistema, se habla de:", "options": ["Entrada", "Salida", "Efecto encadenado", "Recurso", "Cuadro comparativo"], "answer": 2}, {"question": "¿Cuál de los siguientes es un ejemplo de operador mecánico?", "options": ["Cartulina", "Marcador", "Polea", "Cuaderno", "Imagen impresa"], "answer": 2}, {"question": "Una palanca permite mover un objeto pesado con menor esfuerzo. En este caso, la palanca:", "options": ["Transmite o modifica fuerza", "Elimina el movimiento", "Sirve solo para decorar", "No cumple función mecánica", "Reemplaza la conclusión"], "answer": 0}, {"question": "El objetivo principal del tema es que el estudiante:", "options": ["Memorice fechas históricas", "Reconozca operadores mecánicos y efectos encadenados", "Escriba una biografía", "Dibuje únicamente una bicicleta", "Use marcadores de colores"], "answer": 1}, {"question": "En el ejemplo del dominó, una ficha cae y empuja a otra. Esto evidencia:", "options": ["Una salida sin entrada", "Un efecto encadenado", "Una línea del tiempo", "Un recurso tecnológico", "Una actividad sin movimiento"], "answer": 1}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "Si una persona empuja una manivela y esta hace girar una rueda, la acción de empujar corresponde a:", "options": ["La entrada del sistema", "La salida del sistema", "La conclusión", "La decoración", "El resultado final"], "answer": 0}, {"question": "Cuando una rueda gira después de mover una cadena, el giro de la rueda corresponde a:", "options": ["La entrada", "La salida", "El recurso", "La teoría", "La carga invisible"], "answer": 1}, {"question": "Un operador mecánico se reconoce porque:", "options": ["Ayuda a transmitir o transformar fuerza y movimiento", "Solo sirve para escribir respuestas", "No participa en el movimiento", "Es siempre una imagen decorativa", "Elimina toda fuerza"], "answer": 0}, {"question": "¿Cuál situación muestra mejor un efecto encadenado?", "options": ["Una ficha de dominó empuja otra", "Un estudiante colorea una guía", "Un cuaderno está cerrado", "Una cartulina está sobre la mesa", "Un marcador está sin tapa"], "answer": 0}, {"question": "Si al girar una llave se abre una cerradura, este proceso puede analizarse como:", "options": ["Un sistema con entrada, mecanismo y salida", "Una actividad sin movimiento", "Un texto narrativo", "Una imagen fija", "Un recurso sin función"], "answer": 0}, {"question": "En una tijera, el movimiento de las manos se transmite a las hojas para cortar. Esto indica que la tijera:", "options": ["Funciona como mecanismo", "No tiene operadores", "No produce salida", "Solo es decorativa", "No modifica fuerza"], "answer": 0}, {"question": "Una máquina simple como la polea se considera operador mecánico porque:", "options": ["Permite cambiar la dirección de una fuerza", "Sirve para escribir en el cuaderno", "No genera ningún movimiento", "Solo es un dibujo", "Evita toda carga"], "answer": 0}, {"question": "Cuando se acciona una palanca para levantar una piedra, la piedra levantada representa:", "options": ["La salida del sistema", "La entrada del sistema", "El recurso didáctico", "La explicación inicial", "La pieza inmóvil"], "answer": 0}, {"question": "Si un sistema mecánico no tiene una acción inicial, probablemente:", "options": ["No tendrá entrada clara", "Funcionará mejor", "No necesitará piezas", "Tendrá más decoración", "Eliminará la salida"], "answer": 0}, {"question": "Una cadena de bicicleta es importante porque:", "options": ["Transmite movimiento entre los pedales y la rueda", "Decora el cuadro de la bicicleta", "Impide todo movimiento", "Reemplaza al ciclista", "No hace parte del mecanismo"], "answer": 0}, {"question": "¿Qué elemento representa mejor la entrada en una bicicleta?", "options": ["La fuerza aplicada sobre los pedales", "La rueda girando al final", "El color del marco", "El asiento", "La pintura de la bicicleta"], "answer": 0}, {"question": "¿Qué elemento representa mejor la salida en una bicicleta?", "options": ["El movimiento final de la rueda", "El color de la cadena", "La forma del asiento", "El sonido del timbre solamente", "La decoración del manubrio"], "answer": 0}, {"question": "Un sistema de engranajes funciona porque:", "options": ["Una rueda dentada mueve a otra", "Las piezas están quietas", "No hay transmisión de movimiento", "Solo hay decoración", "No existe contacto entre piezas"], "answer": 0}, {"question": "Si un engranaje pequeño mueve uno grande, se observa:", "options": ["Transmisión de movimiento", "Ausencia de mecanismo", "Eliminación de fuerza", "Un dibujo sin función", "Una salida imposible"], "answer": 0}, {"question": "Un mecanismo puede transformar el movimiento cuando:", "options": ["Cambia la forma en que se mueve una fuerza o pieza", "No tiene piezas", "Solo tiene colores", "No recibe entrada", "No produce salida"], "answer": 0}, {"question": "El efecto encadenado es importante porque permite explicar:", "options": ["Cómo una acción inicial genera varias acciones posteriores", "Cómo decorar una maqueta", "Cómo escribir una conclusión", "Cómo pintar una cartulina", "Cómo evitar todo movimiento"], "answer": 0}, {"question": "En una máquina, si la entrada es girar una manivela y la salida es subir una carga, el mecanismo:", "options": ["Transforma la acción inicial en un resultado útil", "No cumple ninguna función", "Solo cambia de color", "Elimina el movimiento", "No tiene operadores"], "answer": 0}, {"question": "Una polea fija puede ayudar principalmente a:", "options": ["Cambiar la dirección de la fuerza aplicada", "Eliminar la carga", "Romper la cuerda", "Evitar el movimiento", "Decorar una grúa"], "answer": 0}, {"question": "Una palanca necesita principalmente:", "options": ["Un punto de apoyo y una fuerza aplicada", "Un cuaderno y un marcador", "Una imagen impresa", "Una conclusión escrita", "Una línea del tiempo"], "answer": 0}, {"question": "Si en un mecanismo una pieza falla, puede ocurrir que:", "options": ["Se interrumpa el efecto encadenado", "Todas las piezas funcionen mejor", "No cambie nada nunca", "Desaparezcan las fuerzas", "La entrada se vuelva decoración"], "answer": 0}, {"question": "Un estudiante analiza una puerta: empuja la manija, gira el mecanismo y se abre la puerta. Este caso muestra:", "options": ["Entrada, transmisión y salida", "Solo decoración", "Un sistema sin movimiento", "Una carga sin fuerza", "Una explicación sin ejemplo"], "answer": 0}, {"question": "El movimiento útil en un mecanismo se refiere a:", "options": ["El resultado que cumple una función práctica", "El color de las piezas", "La cantidad de dibujos", "El tamaño del cuaderno", "La forma de la letra"], "answer": 0}, {"question": "Una rueda y eje se considera operador mecánico porque:", "options": ["Facilita el movimiento y reduce el esfuerzo", "Impide que algo se mueva", "Solo sirve para adornar", "No transmite fuerza", "No produce ningún resultado"], "answer": 0}, {"question": "Un tornillo puede considerarse operador mecánico porque:", "options": ["Convierte el giro en avance o presión", "Solo cambia de color", "No tiene movimiento", "Sirve únicamente para decorar", "No modifica fuerza"], "answer": 0}, {"question": "Una rampa o plano inclinado permite:", "options": ["Subir una carga con menos esfuerzo aumentando la distancia", "Eliminar el peso del objeto", "Hacer que nada se mueva", "Reemplazar todo mecanismo", "Evitar la entrada"], "answer": 0}, {"question": "Si un estudiante identifica primero la fuerza aplicada, luego las piezas que se mueven y finalmente el resultado, está analizando:", "options": ["Entrada, mecanismo y salida", "Color, tamaño y forma", "Dibujo, margen y título", "Cartulina, marcador y regla", "Texto, imagen y decoración"], "answer": 0}, {"question": "Una grúa que levanta una carga mediante cables y poleas es ejemplo de:", "options": ["Sistema mecánico con operadores", "Objeto sin función", "Estructura sin movimiento", "Actividad sin salida", "Recurso decorativo"], "answer": 0}, {"question": "Cuando varias piezas trabajan coordinadamente para lograr un movimiento, se forma:", "options": ["Un mecanismo", "Una conclusión", "Un título", "Una imagen estática", "Una lista sin relación"], "answer": 0}, {"question": "El análisis de un mecanismo permite comprender:", "options": ["Cómo se transmite la fuerza y se produce movimiento", "Solo el color de las piezas", "La ortografía de una guía", "La decoración de la máquina", "El tamaño del dibujo"], "answer": 0}, {"question": "Una herramienta como unas pinzas puede funcionar como:", "options": ["Una palanca que facilita sujetar o mover objetos", "Un texto informativo", "Una línea del tiempo", "Un material sin función", "Una imagen impresa"], "answer": 0}, {"question": "Un sistema mecánico se diferencia de una pieza aislada porque:", "options": ["Integra varias partes que trabajan juntas", "No tiene función", "No puede moverse", "Siempre es de papel", "Solo sirve para dibujar"], "answer": 0}, {"question": "Si una cuerda, una polea y una carga actúan juntas, se puede afirmar que:", "options": ["Forman parte de un sistema mecánico", "No existe operador mecánico", "No hay transmisión de fuerza", "La cuerda no tiene función", "La carga es una conclusión"], "answer": 0}, {"question": "El efecto encadenado en una máquina ayuda a entender:", "options": ["La secuencia de acciones entre sus partes", "El color de sus materiales", "La cantidad de estudiantes", "La decoración del aula", "El tamaño del título"], "answer": 0}, {"question": "Cuando un estudiante explica que una acción inicial genera un resultado final, está reconociendo:", "options": ["La relación entre entrada y salida", "La ausencia de mecanismo", "El color del sistema", "La decoración de la guía", "Una imagen sin función"], "answer": 0}, {"question": "En una bicicleta, los pedales, cadena y rueda trabajan en conjunto. Esto demuestra que:", "options": ["Las piezas coordinadas producen movimiento útil", "Las piezas no tienen relación", "La bicicleta no es un sistema", "No existe salida", "No hay efecto encadenado"], "answer": 0}, {"question": "Una carretilla facilita transportar peso porque usa operadores como:", "options": ["Palanca, rueda y eje", "Solo cartulina", "Marcadores y colores", "Cuaderno y regla", "Imagen y título"], "answer": 0}, {"question": "La salida de un sistema mecánico debe entenderse como:", "options": ["El efecto o resultado producido por el mecanismo", "El inicio de la fuerza", "El color de la pieza", "El dibujo del estudiante", "La actividad de cierre"], "answer": 0}, {"question": "La entrada de un sistema mecánico debe entenderse como:", "options": ["La acción o fuerza que inicia el funcionamiento", "La conclusión escrita", "El resultado final", "La decoración", "La imagen del mecanismo"], "answer": 0}, {"question": "La mejor conclusión sobre operadores mecánicos y efectos encadenados es que:", "options": ["Permiten explicar cómo una fuerza inicial se transmite y produce un resultado útil", "Solo sirven para hacer dibujos", "No tienen relación con máquinas", "Evitan todo movimiento", "Son únicamente materiales escolares"], "answer": 0}];
-let currentQuestion = 0;
-let score = 0;
-let selectedAnswers = [];
+const APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbwIuwpfKykrKwIPSdduhIdrg8kjVHz6ueXX4dyw5TEzgTBDn8oBbdiZAx4R34-ZtBr6/exec";
+const questions=[{"question": "Una polea permite levantar una carga al jalar una cuerda. Selecciona dos afirmaciones correctas.", "options": ["La polea es un operador mecánico", "La cuerda y la polea transmiten fuerza", "La polea es una conclusión", "La polea elimina toda carga", "La polea es una línea del tiempo"], "answers": [0, 1]}, {"question": "En una bicicleta, al mover los pedales se mueve la cadena y luego gira la rueda. Selecciona dos ideas correctas.", "options": ["Hay efecto encadenado", "Se transmite movimiento", "No hay mecanismo", "Solo hay decoración", "No existe salida"], "answers": [0, 1]}, {"question": "La entrada de un mecanismo se reconoce porque:", "options": ["Es la fuerza inicial", "Es la acción que inicia el sistema", "Es el resultado final", "Es el color de la máquina", "Es la conclusión del cuaderno"], "answers": [0, 1]}, {"question": "La salida de un mecanismo corresponde a:", "options": ["El resultado producido", "El efecto útil del sistema", "La acción inicial", "El dibujo del mecanismo", "La decoración"], "answers": [0, 1]}, {"question": "Un mecanismo se define mejor como:", "options": ["Conjunto de piezas coordinadas", "Sistema que produce movimiento útil", "Una sola pieza sin función", "Una imagen decorativa", "Una conclusión escrita"], "answers": [0, 1]}, {"question": "Cuando una acción provoca otra dentro de un sistema, se evidencia:", "options": ["Efecto encadenado", "Secuencia de acciones", "Cuadro comparativo", "Salida sin entrada", "Recurso sin movimiento"], "answers": [0, 1]}, {"question": "Son ejemplos de operadores mecánicos:", "options": ["Polea", "Palanca", "Cartulina", "Cuaderno", "Marcador"], "answers": [0, 1]}, {"question": "Una palanca permite mover un objeto pesado con menor esfuerzo porque:", "options": ["Transmite fuerza", "Modifica la fuerza aplicada", "Elimina el movimiento", "Solo decora", "No cumple función mecánica"], "answers": [0, 1]}, {"question": "El tema de operadores mecánicos busca que el estudiante:", "options": ["Reconozca operadores mecánicos", "Comprenda efectos encadenados", "Memorice fechas", "Dibuje solo bicicletas", "Use marcadores"], "answers": [0, 1]}, {"question": "El ejemplo del dominó representa:", "options": ["Efecto encadenado", "Una acción que provoca otra", "Salida sin entrada", "Línea del tiempo", "Actividad sin movimiento"], "answers": [0, 1]}, {"question": "Analizar cómo una pieza mueve a otra permite comprender:", "options": ["Transmisión de movimiento", "Efecto encadenado", "Color del sistema", "Tamaño del cuaderno", "Decoración"], "answers": [0, 1]}, {"question": "Al empujar una manivela y hacer girar una rueda se identifica:", "options": ["Entrada del sistema", "Transmisión de movimiento", "Conclusión escrita", "Decoración", "Resultado sin acción"], "answers": [0, 1]}, {"question": "Cuando una rueda gira después de mover una cadena, se reconoce:", "options": ["Salida del sistema", "Resultado del mecanismo", "Entrada inicial", "Recurso decorativo", "Carga invisible"], "answers": [0, 1]}, {"question": "Un operador mecánico se reconoce porque:", "options": ["Transmite fuerza", "Transforma movimiento", "Solo sirve para escribir", "No participa en el movimiento", "Elimina toda fuerza"], "answers": [0, 1]}, {"question": "Muestran efecto encadenado:", "options": ["Una ficha de dominó empuja otra", "Pedales mueven cadena y luego rueda", "Un cuaderno cerrado", "Una cartulina quieta", "Un marcador sin tapa"], "answers": [0, 1]}, {"question": "Al girar una llave y abrir una cerradura se observa:", "options": ["Entrada", "Salida", "Imagen fija", "Recurso sin función", "Actividad sin movimiento"], "answers": [0, 1]}, {"question": "En una tijera, las manos mueven las hojas para cortar. Esto muestra que:", "options": ["La tijera funciona como mecanismo", "La tijera transmite movimiento", "No produce salida", "Solo es decorativa", "No modifica fuerza"], "answers": [0, 1]}, {"question": "Una polea se considera operador mecánico porque:", "options": ["Cambia la dirección de una fuerza", "Ayuda a levantar cargas", "Sirve para escribir", "No genera movimiento", "Evita toda carga"], "answers": [0, 1]}, {"question": "Al usar una palanca para levantar una piedra se identifican:", "options": ["Fuerza aplicada como entrada", "Piedra levantada como salida", "Decoración como mecanismo", "Imagen como salida", "Cuaderno como operador"], "answers": [0, 1]}, {"question": "Si un sistema no tiene acción inicial:", "options": ["No tiene entrada clara", "No inicia correctamente", "Funciona mejor", "No necesita piezas", "Elimina la salida"], "answers": [0, 1]}, {"question": "La cadena de una bicicleta sirve porque:", "options": ["Transmite movimiento", "Conecta pedales y rueda", "Decora el cuadro", "Impide movimiento", "Reemplaza al ciclista"], "answers": [0, 1]}, {"question": "La entrada en una bicicleta puede ser:", "options": ["Fuerza sobre los pedales", "Movimiento inicial del ciclista", "Rueda girando al final", "Color del marco", "Pintura"], "answers": [0, 1]}, {"question": "La salida en una bicicleta puede ser:", "options": ["Movimiento final de la rueda", "Desplazamiento de la bicicleta", "Color de la cadena", "Forma del asiento", "Decoración"], "answers": [0, 1]}, {"question": "Un sistema de engranajes funciona porque:", "options": ["Una rueda dentada mueve a otra", "Se transmite movimiento entre piezas", "Las piezas están quietas", "No hay transmisión", "No hay contacto"], "answers": [0, 1]}, {"question": "Si un engranaje pequeño mueve uno grande, se observa:", "options": ["Transmisión de movimiento", "Relación entre piezas", "Ausencia de mecanismo", "Eliminación total de fuerza", "Salida imposible"], "answers": [0, 1]}, {"question": "Un mecanismo transforma movimiento cuando:", "options": ["Cambia la forma en que se mueve una pieza", "Convierte una acción inicial en resultado", "No tiene piezas", "No recibe entrada", "No produce salida"], "answers": [0, 1]}, {"question": "El efecto encadenado permite explicar:", "options": ["Cómo una acción inicial genera otras acciones", "La secuencia de funcionamiento", "Cómo decorar una maqueta", "Cómo pintar cartulina", "Cómo evitar movimiento"], "answers": [0, 1]}, {"question": "Si una manivela sube una carga, el mecanismo:", "options": ["Transforma la acción inicial", "Produce un resultado útil", "No cumple función", "Solo cambia color", "No tiene operadores"], "answers": [0, 1]}, {"question": "Una polea fija puede:", "options": ["Cambiar la dirección de la fuerza", "Facilitar levantar una carga", "Eliminar la carga", "Romper la cuerda", "Evitar movimiento"], "answers": [0, 1]}, {"question": "Una palanca necesita:", "options": ["Punto de apoyo", "Fuerza aplicada", "Cuaderno", "Marcador", "Imagen impresa"], "answers": [0, 1]}, {"question": "Si una pieza falla en un mecanismo:", "options": ["Puede interrumpirse el efecto encadenado", "Puede fallar la salida", "Funciona mejor", "Desaparecen las fuerzas", "La entrada se decora"], "answers": [0, 1]}, {"question": "Al empujar una manija y abrir una puerta se reconocen:", "options": ["Entrada", "Salida", "Sistema sin movimiento", "Carga sin fuerza", "Explicación sin ejemplo"], "answers": [0, 1]}, {"question": "El movimiento útil en un mecanismo es:", "options": ["Resultado práctico", "Salida que cumple una función", "Color de piezas", "Cantidad de dibujos", "Tamaño del cuaderno"], "answers": [0, 1]}, {"question": "La rueda y eje son operadores porque:", "options": ["Facilitan el movimiento", "Reducen el esfuerzo", "Impiden movimiento", "Solo adornan", "No transmiten fuerza"], "answers": [0, 1]}, {"question": "Un tornillo puede ser operador mecánico porque:", "options": ["Convierte giro en avance", "Genera presión o sujeción", "Solo cambia color", "No tiene movimiento", "No modifica fuerza"], "answers": [0, 1]}, {"question": "Una rampa permite:", "options": ["Subir carga con menos esfuerzo", "Aumentar distancia para reducir esfuerzo", "Eliminar el peso", "Evitar toda entrada", "Reemplazar todo mecanismo"], "answers": [0, 1]}, {"question": "Identificar fuerza aplicada, piezas móviles y resultado es analizar:", "options": ["Entrada", "Salida", "Color", "Margen", "Decoración"], "answers": [0, 1]}, {"question": "Una grúa con cables y poleas es:", "options": ["Sistema mecánico", "Uso de operadores mecánicos", "Objeto sin función", "Estructura sin movimiento", "Actividad sin salida"], "answers": [0, 1]}, {"question": "Cuando piezas trabajan coordinadamente para lograr movimiento se forma:", "options": ["Mecanismo", "Sistema mecánico", "Título", "Imagen estática", "Lista sin relación"], "answers": [0, 1]}, {"question": "Analizar un mecanismo permite comprender:", "options": ["Cómo se transmite la fuerza", "Cómo se produce movimiento", "Color de piezas", "Ortografía de guía", "Tamaño del dibujo"], "answers": [0, 1]}, {"question": "Unas pinzas pueden funcionar como:", "options": ["Palanca", "Herramienta para sujetar objetos", "Texto informativo", "Línea del tiempo", "Imagen impresa"], "answers": [0, 1]}, {"question": "Un sistema mecánico se diferencia de una pieza aislada porque:", "options": ["Integra varias partes", "Sus partes trabajan juntas", "No tiene función", "No puede moverse", "Siempre es de papel"], "answers": [0, 1]}, {"question": "Si cuerda, polea y carga actúan juntas:", "options": ["Forman un sistema mecánico", "Existe transmisión de fuerza", "No hay operador", "La cuerda no funciona", "La carga es conclusión"], "answers": [0, 1]}, {"question": "El efecto encadenado ayuda a entender:", "options": ["Secuencia de acciones", "Relación entre partes", "Color de materiales", "Cantidad de estudiantes", "Decoración del aula"], "answers": [0, 1]}, {"question": "Cuando una acción inicial genera un resultado final se reconoce:", "options": ["Relación entre entrada y salida", "Funcionamiento de un sistema", "Ausencia de mecanismo", "Color del sistema", "Decoración"], "answers": [0, 1]}, {"question": "Pedales, cadena y rueda trabajando juntos demuestran:", "options": ["Piezas coordinadas producen movimiento útil", "Existe efecto encadenado", "No tienen relación", "La bicicleta no es sistema", "No existe salida"], "answers": [0, 1]}, {"question": "Una carretilla facilita transportar peso porque usa:", "options": ["Palanca", "Rueda y eje", "Cartulina", "Marcadores", "Cuaderno"], "answers": [0, 1]}, {"question": "La salida de un sistema mecánico es:", "options": ["Efecto producido", "Resultado del mecanismo", "Inicio de fuerza", "Color de pieza", "Dibujo del estudiante"], "answers": [0, 1]}, {"question": "La entrada de un sistema mecánico es:", "options": ["Acción que inicia el funcionamiento", "Fuerza aplicada inicialmente", "Conclusión escrita", "Resultado final", "Decoración"], "answers": [0, 1]}, {"question": "La mejor conclusión sobre operadores mecánicos y efectos encadenados es:", "options": ["Explican cómo una fuerza inicial se transmite", "Ayudan a comprender un resultado útil", "Solo sirven para dibujos", "No se relacionan con máquinas", "Evitan todo movimiento"], "answers": [0, 1]}];
+let currentQuestion=0, score=0, selectedAnswers=[];
 
-function mezclarArray(array){
-  for(let i=array.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [array[i],array[j]]=[array[j],array[i]];
-  }
-}
+function mezclarArray(array){for(let i=array.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[array[i],array[j]]=[array[j],array[i]];}}
 
 function startQuiz(){
-  const nombre=document.getElementById("nombre").value.trim();
-  if(!nombre){alert("Completa el nombre del estudiante.");return;}
-  mezclarArray(questions);
-  questions.forEach(q=>{
-    const correcta=q.options[q.answer];
-    mezclarArray(q.options);
-    q.answer=q.options.indexOf(correcta);
-  });
-  document.getElementById("datosCard").classList.add("hidden");
-  document.getElementById("quizCard").classList.remove("hidden");
-  showQuestion();
+ const nombre=document.getElementById("nombre").value.trim();
+ if(!nombre){alert("Completa el nombre del estudiante.");return;}
+ mezclarArray(questions);
+ questions.forEach(q=>{
+   const correctTexts=q.answers.map(i=>q.options[i]);
+   mezclarArray(q.options);
+   q.answers=correctTexts.map(t=>q.options.indexOf(t)).sort((a,b)=>a-b);
+ });
+ document.getElementById("datosCard").classList.add("hidden");
+ document.getElementById("quizCard").classList.remove("hidden");
+ showQuestion();
 }
 
 function showQuestion(){
-  const q=questions[currentQuestion];
-  let html=`<div class="progress">Pregunta ${currentQuestion+1} de ${questions.length}</div><h2>${q.question}</h2>`;
-  q.options.forEach((option,index)=>{
-    html+=`<label class="option"><input type="radio" name="option" value="${index}" onchange="nextQuestion()"> ${String.fromCharCode(65+index)}. ${option}</label>`;
-  });
-  document.getElementById("questionContainer").innerHTML=html;
-  window.scrollTo({top:document.getElementById("quizCard").offsetTop-20, behavior:"smooth"});
+ const q=questions[currentQuestion];
+ let html=`<div class="progress">Pregunta ${currentQuestion+1} de ${questions.length}</div><h2>${q.question}</h2><p class="warning">Selecciona exactamente dos respuestas.</p>`;
+ q.options.forEach((option,index)=>{html+=`<label class="option"><input type="checkbox" name="option" value="${index}" onchange="controlSeleccion()"> ${String.fromCharCode(65+index)}. ${option}</label>`;});
+ document.getElementById("questionContainer").innerHTML=html;
+ window.scrollTo({top:document.getElementById("quizCard").offsetTop-20,behavior:"smooth"});
 }
 
+function controlSeleccion(){
+ const selected=Array.from(document.querySelectorAll('input[name="option"]:checked'));
+ if(selected.length>2){selected[selected.length-1].checked=false;alert("Solo puedes seleccionar dos respuestas.");return;}
+ if(selected.length===2){setTimeout(nextQuestion,250);}
+}
+
+function arraysIguales(a,b){if(a.length!==b.length)return false;for(let i=0;i<a.length;i++){if(a[i]!==b[i])return false;}return true;}
+
 function nextQuestion(){
-  const selected=document.querySelector('input[name="option"]:checked');
-  if(!selected) return;
-  const answer=Number(selected.value);
-  const q=questions[currentQuestion];
-  selectedAnswers.push({pregunta:currentQuestion+1,seleccion:String.fromCharCode(65+answer),correcta:answer===q.answer});
-  if(answer===q.answer) score++;
-  setTimeout(()=>{currentQuestion++; if(currentQuestion<questions.length)showQuestion(); else finishQuiz();},250);
+ const selected=Array.from(document.querySelectorAll('input[name="option"]:checked')).map(x=>Number(x.value)).sort((a,b)=>a-b);
+ if(selected.length!==2)return;
+ const q=questions[currentQuestion];
+ const correctas=[...q.answers].sort((a,b)=>a-b);
+ const esCorrecta=arraysIguales(selected,correctas);
+ selectedAnswers.push({pregunta:currentQuestion+1,seleccion:selected.map(i=>String.fromCharCode(65+i)).join("-"),correcta:esCorrecta});
+ if(esCorrecta)score++;
+ currentQuestion++;
+ if(currentQuestion<questions.length)showQuestion();else finishQuiz();
 }
 
 function enviarResultadosGoogleSheets(nombre,curso,puntaje,total,nota,respuestas){
-  const params=new URLSearchParams();
-  params.set("nombre",nombre);
-  params.set("curso",curso);
-  params.set("puntaje",puntaje);
-  params.set("total",total);
-  params.set("nota",nota);
-  params.set("respuestas",respuestas);
-  const iframe=document.createElement("iframe");
-  iframe.style.display="none";
-  iframe.src=APPS_SCRIPT_URL+"?"+params.toString();
-  document.body.appendChild(iframe);
-  document.getElementById("avisoEnvio").textContent="Resultado enviado al docente.";
+ const params=new URLSearchParams();
+ params.set("nombre",nombre);params.set("curso",curso);params.set("puntaje",puntaje);params.set("total",total);params.set("nota",nota);params.set("respuestas",respuestas);
+ const iframe=document.createElement("iframe");iframe.style.display="none";iframe.src=APPS_SCRIPT_URL+"?"+params.toString();document.body.appendChild(iframe);
+ document.getElementById("avisoEnvio").textContent="Resultado enviado al docente.";
 }
 
 function finishQuiz(){
-  document.getElementById("quizCard").classList.add("hidden");
-  document.getElementById("resultCard").classList.remove("hidden");
-  const total=questions.length;
-  const nota=Math.round(20+(score/total)*80);
-  const estado=Number(nota)>=60 ? "APROBADO" : "NO APROBADO";
-  const nombre=document.getElementById("nombre").value.trim();
-  const curso=document.getElementById("curso").value.trim();
-  const respuestas=selectedAnswers.map(r=>`P${r.pregunta}:${r.seleccion}(${r.correcta?"C":"I"})`).join(" | ");
-  enviarResultadosGoogleSheets(nombre,curso,score,total,nota,respuestas);
-  document.getElementById("resultText").innerHTML=`Resultado: ${estado}`;
-  document.getElementById("studentText").innerHTML=`Estudiante: ${nombre}<br>Grado: ${curso}`;
+ document.getElementById("quizCard").classList.add("hidden");
+ document.getElementById("resultCard").classList.remove("hidden");
+ const total=questions.length;
+ const nota=Math.round(20+(score/total)*80);
+ const estado=Number(nota)>=60?"APROBADO":"NO APROBADO";
+ const nombre=document.getElementById("nombre").value.trim();
+ const curso=document.getElementById("curso").value.trim();
+ const respuestas=selectedAnswers.map(r=>`P${r.pregunta}:${r.seleccion}(${r.correcta?"C":"I"})`).join(" | ");
+ enviarResultadosGoogleSheets(nombre,curso,score,total,nota,respuestas);
+ document.getElementById("resultText").innerHTML=`Resultado: ${estado}`;
+ document.getElementById("studentText").innerHTML=`Estudiante: ${nombre}<br>Grado: ${curso}`;
 }
 
-document.addEventListener("contextmenu", e=>e.preventDefault());
-document.addEventListener("keydown", e=>{
-  const key=e.key.toLowerCase();
-  if((e.ctrlKey||e.metaKey)&&["c","v","x","a","u","s","p"].includes(key))e.preventDefault();
-  if(e.key==="F12")e.preventDefault();
-});
-</script>
-</body>
-</html>
+document.addEventListener("contextmenu",e=>e.preventDefault());
+document.addEventListener("keydown",e=>{const key=e.key.toLowerCase();if((e.ctrlKey||e.metaKey)&&["c","v","x","a","u","s","p"].includes(key))e.preventDefault();if(e.key==="F12")e.preventDefault();});
+</script></body></html>
