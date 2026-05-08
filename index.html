@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evaluación Operadores Mecánicos - Grado 8-2</title>
+<style>
+:root{
+  --azul:#0b3766;
+  --verde:#0f7b54;
+  --texto:#111827;
+  --fondo:#edf7ff;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(135deg,#edf7ff,#f2fff8);
+  color:var(--texto);
+  user-select:none;
+}
+header{
+  background:linear-gradient(90deg,var(--azul),var(--verde));
+  color:white;
+  text-align:center;
+  padding:26px 14px;
+}
+header h1{margin:0;font-size:32px}
+header p{margin:8px 0 0}
+.container{max-width:1000px;margin:auto;padding:22px}
+.card{
+  background:white;
+  border-radius:18px;
+  padding:24px;
+  margin-bottom:20px;
+  box-shadow:0 6px 20px rgba(0,0,0,.12);
+}
+input[type=text]{
+  width:100%;
+  padding:14px;
+  margin:8px 0 14px;
+  border:1px solid #c8d0dc;
+  border-radius:12px;
+  font-size:16px;
+  user-select:text;
+}
+button{
+  background:var(--azul);
+  color:white;
+  border:0;
+  border-radius:12px;
+  padding:14px 24px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+button:hover{background:#072548}
+.grado-fijo{
+  background:#eefaf2;
+  border:1px solid #bde6cc;
+  color:#11683b;
+  padding:13px;
+  border-radius:12px;
+  font-size:17px;
+  font-weight:bold;
+  margin:8px 0 16px;
+}
+.intro{
+  border-left:6px solid var(--verde);
+  background:#f7fff9;
+}
+.option{
+  display:block;
+  padding:15px;
+  margin:10px 0;
+  border:1px solid #d3dbea;
+  border-radius:14px;
+  background:#f8fbff;
+  cursor:pointer;
+}
+.option:hover{background:#eaf2ff}
+.hidden{display:none}
+.progress{font-weight:bold;color:var(--verde);margin-bottom:10px}
+.result{font-size:26px;font-weight:bold;color:var(--azul);text-align:center}
+.small{color:#4b5563;font-size:14px}
+.badge{
+  display:inline-block;
+  background:#fff7d6;
+  color:#8a5a00;
+  border:1px solid #f2d36b;
+  padding:6px 10px;
+  border-radius:999px;
+  font-weight:bold;
+  margin-top:8px;
+}
+</style>
+</head>
+
+<body oncopy="return false" onpaste="return false" oncut="return false">
+
+<header>
+  <h1>Evaluación en línea</h1>
+  <p>Operador mecánico y efectos encadenados — Grado 8-2 | Tecnología e Informática | IE San Miguel</p>
+  <span class="badge">50 preguntas · nota de 20 a 100 · resultado visible sin nota</span>
+</header>
+
+<div class="container">
+
+<section class="card" id="datosCard">
+  <h2>Datos del estudiante</h2>
+
+  <label><strong>Nombre completo:</strong></label>
+  <input type="text" id="nombre" placeholder="Nombre completo">
+
+  <label><strong>Grado:</strong></label>
+  <div class="grado-fijo">8-2</div>
+  <input type="hidden" id="curso" value="8-2">
+
+  <button onclick="startQuiz()">Iniciar evaluación</button>
+</section>
+
+<section class="card intro">
+  <h2>Instrucciones</h2>
+  <p>Lee cada pregunta y selecciona la opción correcta. Al seleccionar una respuesta, el sistema avanzará automáticamente a la siguiente pregunta.</p>
+  <p class="small">Las preguntas y las opciones se mezclan automáticamente para cada estudiante. Al finalizar, solo verás APROBADO o NO APROBADO. La nota se enviará al docente.</p>
+</section>
+
+<section class="card hidden" id="quizCard">
+  <div id="questionContainer"></div>
+</section>
+
+<section class="card hidden" id="resultCard">
+  <div class="result" id="resultText"></div>
+  <p id="studentText"></p>
+  <p id="avisoEnvio" class="small">Enviando resultado a Google Sheets...</p>
+</section>
+
+</div>
+
+<script>
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwIuwpfKykrKwIPSdduhIdrg8kjVHz6ueXX4dyw5TEzgTBDn8oBbdiZAx4R34-ZtBr6/exec";
+const questions = [{"question": "Un estudiante observa una polea que permite levantar una carga al jalar una cuerda. ¿Qué representa la polea dentro del sistema?", "options": ["Una evidencia de aprendizaje", "Un operador mecánico", "Una conclusión", "Una línea del tiempo", "Un recurso didáctico"], "answer": 1}, {"question": "En una bicicleta, al mover los pedales se mueve la cadena y luego gira la rueda. Este caso representa principalmente:", "options": ["Un efecto encadenado", "Una actividad de cierre", "Un recurso de clase", "Una imagen impresa", "Una definición escrita"], "answer": 0}, {"question": "La entrada en un mecanismo corresponde a:", "options": ["El resultado final del sistema", "La fuerza o acción inicial", "El dibujo del mecanismo", "La explicación oral", "La carga que se levanta"], "answer": 1}, {"question": "La salida de un mecanismo es:", "options": ["La fuerza que inicia el movimiento", "La pieza que no se mueve", "El resultado final producido", "El cuaderno usado en clase", "El marcador de la cartulina"], "answer": 2}, {"question": "¿Cuál opción describe mejor un mecanismo?", "options": ["Una sola pieza sin movimiento", "Un conjunto de piezas coordinadas para producir movimiento útil", "Una explicación escrita sin ejemplo", "Una conclusión sobre tecnología", "Una imagen decorativa"], "answer": 1}, {"question": "Si una acción provoca otra dentro de un sistema, se habla de:", "options": ["Entrada", "Salida", "Efecto encadenado", "Recurso", "Cuadro comparativo"], "answer": 2}, {"question": "¿Cuál de los siguientes es un ejemplo de operador mecánico?", "options": ["Cartulina", "Marcador", "Polea", "Cuaderno", "Imagen impresa"], "answer": 2}, {"question": "Una palanca permite mover un objeto pesado con menor esfuerzo. En este caso, la palanca:", "options": ["Transmite o modifica fuerza", "Elimina el movimiento", "Sirve solo para decorar", "No cumple función mecánica", "Reemplaza la conclusión"], "answer": 0}, {"question": "El objetivo principal del taller es que el estudiante:", "options": ["Memorice fechas históricas", "Reconozca operadores mecánicos y efectos encadenados", "Escriba una biografía", "Dibuje únicamente una bicicleta", "Use marcadores de colores"], "answer": 1}, {"question": "En el ejemplo del dominó, una ficha cae y empuja a otra. Esto evidencia:", "options": ["Una salida sin entrada", "Un efecto encadenado", "Una línea del tiempo", "Un recurso tecnológico", "Una actividad sin movimiento"], "answer": 1}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}, {"question": "En un sistema mecánico, identificar cómo una pieza mueve a otra permite comprender:", "options": ["El efecto encadenado", "El color del sistema", "El tamaño del cuaderno", "La decoración de la máquina", "El tipo de cartulina"], "answer": 0}];
+
+let currentQuestion = 0;
+let score = 0;
+let selectedAnswers = [];
+
+function mezclarArray(array){
+  for(let i=array.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [array[i],array[j]]=[array[j],array[i]];
+  }
+}
+
+function startQuiz(){
+  const nombre=document.getElementById("nombre").value.trim();
+
+  if(!nombre){
+    alert("Completa el nombre del estudiante.");
+    return;
+  }
+
+  mezclarArray(questions);
+
+  questions.forEach(q=>{
+    const correcta=q.options[q.answer];
+    mezclarArray(q.options);
+    q.answer=q.options.indexOf(correcta);
+  });
+
+  document.getElementById("datosCard").classList.add("hidden");
+  document.getElementById("quizCard").classList.remove("hidden");
+
+  showQuestion();
+}
+
+function showQuestion(){
+  const q=questions[currentQuestion];
+
+  let html=`<div class="progress">Pregunta ${currentQuestion+1} de ${questions.length}</div><h2>${q.question}</h2>`;
+
+  q.options.forEach((option,index)=>{
+    html+=`<label class="option"><input type="radio" name="option" value="${index}" onchange="nextQuestion()"> ${String.fromCharCode(65+index)}. ${option}</label>`;
+  });
+
+  document.getElementById("questionContainer").innerHTML=html;
+  window.scrollTo({top:document.getElementById("quizCard").offsetTop-20, behavior:"smooth"});
+}
+
+function nextQuestion(){
+  const selected=document.querySelector('input[name="option"]:checked');
+
+  if(!selected) return;
+
+  const answer=Number(selected.value);
+  const q=questions[currentQuestion];
+
+  selectedAnswers.push({
+    pregunta: currentQuestion+1,
+    seleccion: String.fromCharCode(65+answer),
+    correcta: answer===q.answer
+  });
+
+  if(answer===q.answer) score++;
+
+  setTimeout(()=>{
+    currentQuestion++;
+    if(currentQuestion<questions.length){
+      showQuestion();
+    }else{
+      finishQuiz();
+    }
+  },250);
+}
+
+function enviarResultadosGoogleSheets(nombre,curso,puntaje,total,nota,respuestas){
+  const params=new URLSearchParams();
+  params.set("nombre",nombre);
+  params.set("curso",curso);
+  params.set("puntaje",puntaje);
+  params.set("total",total);
+  params.set("nota",nota);
+  params.set("respuestas",respuestas);
+
+  const iframe=document.createElement("iframe");
+  iframe.style.display="none";
+  iframe.src=APPS_SCRIPT_URL+"?"+params.toString();
+  document.body.appendChild(iframe);
+
+  document.getElementById("avisoEnvio").textContent="Resultado enviado al docente.";
+}
+
+function finishQuiz(){
+  document.getElementById("quizCard").classList.add("hidden");
+  document.getElementById("resultCard").classList.remove("hidden");
+
+  const total=questions.length;
+
+  // Escala: mínimo 20, máximo 100
+  const nota=(20+(score/total)*80).toFixed(2);
+
+  // Aprobado desde 60
+  const estado=Number(nota)>=60 ? "APROBADO" : "NO APROBADO";
+
+  const nombre=document.getElementById("nombre").value.trim();
+  const curso=document.getElementById("curso").value.trim();
+
+  const respuestas=selectedAnswers.map(r=>`P${r.pregunta}:${r.seleccion}(${r.correcta?"C":"I"})`).join(" | ");
+
+  enviarResultadosGoogleSheets(nombre,curso,score,total,nota,respuestas);
+
+  document.getElementById("resultText").innerHTML=`Resultado: ${estado}`;
+  document.getElementById("studentText").innerHTML=`Estudiante: ${nombre}<br>Grado: ${curso}`;
+}
+
+document.addEventListener("contextmenu", e=>e.preventDefault());
+
+document.addEventListener("keydown", e=>{
+  const key=e.key.toLowerCase();
+  if((e.ctrlKey||e.metaKey)&&["c","v","x","a","u","s","p"].includes(key)){
+    e.preventDefault();
+  }
+  if(e.key==="F12"){
+    e.preventDefault();
+  }
+});
+</script>
+
+</body>
+</html>
