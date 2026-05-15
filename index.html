@@ -34,7 +34,7 @@ function startQuiz(){
 function showQuestion(){
  const q=questions[currentQuestion];
  let html=`<div class="progress">Pregunta ${currentQuestion+1} de ${questions.length}</div><h2>${q.question}</h2><p class="warning">Selecciona exactamente dos respuestas.</p>`;
- q.options.forEach((option,index)=>{html+=`<label class="option"><input type="checkbox" name="option" value="${index}" onchange="controlSeleccion()"> ${String.fromCharCode(65+index)}. ${option}</label>`;});
+ q.options.forEach((option,index)=>{html+=`<label class="option"><input type="checkbox" name="option" value="${index}" onchange="controlSeleccion()"> ${option}</label>`;});
  document.getElementById("questionContainer").innerHTML=html;
  window.scrollTo({top:document.getElementById("quizCard").offsetTop-20,behavior:"smooth"});
 }
